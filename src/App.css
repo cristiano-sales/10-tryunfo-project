@@ -1,0 +1,10 @@
+form {
+  margin-left: 30px;
+  display: flex;
+  flex-flow: column wrap;
+  line-height: 30px;
+}
+
+button {
+  width: 33%;
+}
