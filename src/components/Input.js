@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Input extends Component {
   render() {
-    const { testid, type, label, id } = this.props;
+    const { testid, type, label, id, value, onChange, checked } = this.props;
 
     if (type === 'textarea') {
       return (
@@ -15,6 +15,8 @@ class Input extends Component {
             type={ type }
             name={ id }
             id={ id }
+            value={ value }
+            onChange={ onChange }
           />
         </label>
       );
@@ -29,6 +31,8 @@ class Input extends Component {
             type={ type }
             name={ id }
             id={ id }
+            value={ value }
+            onChange={ onChange }
           >
             <option>normal</option>
             <option>raro</option>
@@ -46,6 +50,9 @@ class Input extends Component {
           type={ type }
           name={ id }
           id={ id }
+          value={ value }
+          onChange={ onChange }
+          checked={ checked }
         />
       </label>
     );
@@ -57,6 +64,9 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default Input;
