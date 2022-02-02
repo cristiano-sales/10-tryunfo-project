@@ -1,8 +1,8 @@
 form {
   display: flex;
-  margin-left: 30px;
   flex-flow: column wrap;
   line-height: 30px;
+  margin-left: 30px;
 }
 
 button {
