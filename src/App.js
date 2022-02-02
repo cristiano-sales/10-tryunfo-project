@@ -16,10 +16,10 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    //  this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange({ target }) {
+  handleInputChange = ({ target }) => {
     this.setState({ [target.name]: target.checked ? target.checked : target.value });
   }
 
