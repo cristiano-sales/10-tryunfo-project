@@ -9,25 +9,62 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      isSaveButtonDisabled: true,
     };
-    //  this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange = ({ target }) => {
-    this.setState({ [target.name]: target.checked ? target.checked : target.value });
+    this.setState({
+      [target.name]: target.type === 'checkbox' ? target.checked : target.value,
+    },
+    this.enableDisabledButton);
+  }
+
+  enableDisabledButton = () => {
+    const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
+    const attrMaximo = 90;
+    const attrMaximoTotal = 210;
+    const arrayVerificador = [];
+
+    if (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) > attrMaximoTotal) {
+      arrayVerificador.push(false);
+    }
+
+    Object.entries(this.state).forEach(([chave, valor]) => {
+      if (valor === '') {
+        arrayVerificador.push(false);
+      }
+
+      if (chave.includes('cardAttr')
+      && (Number(valor) < 0
+      || Number(valor) > attrMaximo
+      || Number(valor) === ''
+      )) {
+        arrayVerificador.push(false);
+      }
+    });
+
+    if (arrayVerificador.includes(false)) {
+      this.setState({ isSaveButtonDisabled: true });
+    } else {
+      this.setState({ isSaveButtonDisabled: false });
+    }
   }
 
   render() {
     return (
       <div>
         <h1>Tryunfo</h1>
-        <Form onInputChange={ this.handleInputChange } />
+        <Form
+          { ...this.state }
+          onInputChange={ this.handleInputChange }
+        />
         <Card { ...this.state } />
       </div>
     );
