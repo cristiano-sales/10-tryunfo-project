@@ -27,7 +27,7 @@ class App extends React.Component {
     this.enableDisabledButton);
   }
 
-  handleSaveButton(e) {
+  handleSaveButton = (e) => {
     e.preventDefault();
     const {
       cardName,
