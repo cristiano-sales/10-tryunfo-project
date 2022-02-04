@@ -16,6 +16,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      cardsArray: [],
     };
   }
 
@@ -24,6 +25,45 @@ class App extends React.Component {
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
     },
     this.enableDisabledButton);
+  }
+
+  handleSaveButton(e) {
+    e.preventDefault();
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      cardsArray,
+    } = this.state;
+
+    this.setState({
+      cardsArray: [...cardsArray,
+        {
+          cardName,
+          cardDescription,
+          cardAttr1,
+          cardAttr2,
+          cardAttr3,
+          cardImage,
+          cardRare,
+          cardTrunfo,
+        },
+      ],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+      isSaveButtonDisabled: true,
+    });
   }
 
   enableDisabledButton = () => {
@@ -64,6 +104,7 @@ class App extends React.Component {
         <Form
           { ...this.state }
           onInputChange={ this.handleInputChange }
+          onSaveButtonClick={ this.handleSaveButton }
         />
         <Card { ...this.state } />
       </div>
