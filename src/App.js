@@ -15,6 +15,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
       cardsArray: [],
     };
@@ -40,6 +41,10 @@ class App extends React.Component {
       cardTrunfo,
       cardsArray,
     } = this.state;
+
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
 
     this.setState({
       cardsArray: [...cardsArray,
