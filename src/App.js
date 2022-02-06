@@ -103,6 +103,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { cardsArray } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -112,6 +113,8 @@ class App extends React.Component {
           onSaveButtonClick={ this.handleSaveButton }
         />
         <Card { ...this.state } />
+        <h1>Todas as cartas</h1>
+        { cardsArray.map((card) => <Card key={ card.id } { ...card } />) }
       </div>
     );
   }
